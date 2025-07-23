@@ -1,0 +1,7 @@
+__pychache__/
+*.pyc
+*.h5
+.env
+node_modules/
+.DS_Store
+*.log

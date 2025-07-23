@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digit Recognizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Digit Recognizer</h1>
+
+  <div class="camera-container">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <img id="preview" alt="Captured Image" />
+  </div>
+
+  <div class="controls">
+    <button id="capture">Capture</button>
+    <button id="predict">Predict</button>
+  </div>
+
+  <h2 id="result"></h2>
+
+  <script src="script.js"></script>
+</body>
+</html>
