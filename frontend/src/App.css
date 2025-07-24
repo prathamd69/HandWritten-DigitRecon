@@ -5,3 +5,23 @@
 	align-items: center;
 	width: 100vw;
 }
+
+.container .skeleton {
+	background-color: #e0e0e0;
+	border-radius: 8px;
+	min-height: 200px;
+	min-width: 350px;
+	animation: skeleton-loading 2.2s infinite linear;
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background-color: #1b1b1b;
+	}
+	50% {
+		background-color: #1c1c1c;
+	}
+	100% {
+		background-color: #1d1d1d;
+	}
+}

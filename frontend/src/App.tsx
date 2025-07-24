@@ -22,7 +22,7 @@ function App() {
 			<div className="container">
 				<h1>Digit Recognition</h1>
 				<div>
-					<video autoPlay playsInline ref={videoRef} />
+					<video autoPlay playsInline ref={videoRef} className="skeleton" />
 					<img />
 				</div>
 				<button>Capture</button>
