@@ -4,6 +4,15 @@
 	justify-content: center;
 	align-items: center;
 	width: 100vw;
+	gap: 8px;
+}
+
+.inner-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
 }
 
 .container .skeleton {
@@ -18,13 +27,19 @@
 }
 
 .container .loaded {
-	padding: 8px;
 	background-color: #1b1b1b;
 	border-radius: 8px;
 	min-height: 200px;
 	min-width: 350px;
 	transform: rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
+}
+
+.container img {
+	background-color: #1b1b1b;
+	border-radius: 8px;
+	min-height: 200px;
+	min-width: 350px;
 }
 
 .btns {

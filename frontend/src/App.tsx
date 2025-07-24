@@ -35,6 +35,26 @@ function App() {
 		}
 	};
 
+	const captureImage = () => {
+		if (videoRef.current) {
+			const video = videoRef.current;
+			const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+			if (!canvas) return;
+			canvas.width = video.videoWidth;
+			canvas.height = video.videoHeight;
+			const context = canvas.getContext("2d");
+			if (context) {
+				context.drawImage(video, 0, 0, canvas.width, canvas.height);
+				const dataURL = canvas.toDataURL("image/png");
+				const preview = document.getElementById("preview") as HTMLImageElement;
+				preview.src = dataURL;
+				// You can now use dataURL, e.g. set it to an <img> src or save it
+				// Example: set a state to show the captured image
+				// setCapturedImage(dataURL);
+			}
+		}
+	};
+
 	useEffect(() => {
 		if (videoRef.current && vid && enableVid) {
 			videoRef.current.srcObject = vid;
@@ -45,7 +65,7 @@ function App() {
 		<>
 			<div className="container">
 				<h1>Digit Recognition</h1>
-				<div>
+				<div className="inner-container">
 					{enableVid && (
 						<video
 							autoPlay
@@ -54,10 +74,16 @@ function App() {
 							className={`${isLoading ? "skeleton" : "loaded"}`}
 						/>
 					)}
-					<img />
+					<canvas id="canvas" style={{ display: "none" }} />
+					<img id="preview" />
 				</div>
 				<div className="btns">
-					<button>Capture</button>
+					<button
+						onClick={() => {
+							captureImage();
+						}}>
+						Capture
+					</button>
 					<button onClick={toggleVideoStream}>
 						{enableVid ? "Disable" : "Enable"} Stream
 					</button>
