@@ -28,7 +28,6 @@ function App() {
 
 	const toggleVideoStream = () => {
 		if (enableVid) {
-			setVid(undefined);
 			setEnableVid(false);
 		} else {
 			requestVideoStream();
@@ -57,10 +56,12 @@ function App() {
 					)}
 					<img />
 				</div>
-				<button>Capture</button>
-				<button onClick={toggleVideoStream}>
-					{enableVid ? "Disable" : "Enable"} Stream
-				</button>
+				<div className="btns">
+					<button>Capture</button>
+					<button onClick={toggleVideoStream}>
+						{enableVid ? "Disable" : "Enable"} Stream
+					</button>
+				</div>
 				<p>Predicted Number : ~</p>
 			</div>
 		</>

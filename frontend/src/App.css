@@ -27,6 +27,12 @@
 	-webkit-transform: rotateY(180deg);
 }
 
+.btns {
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
+}
+
 @keyframes skeleton-loading {
 	0% {
 		background-color: #1b1b1b;
