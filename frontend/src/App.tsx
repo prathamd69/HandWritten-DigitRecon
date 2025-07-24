@@ -5,10 +5,20 @@ function App() {
 	const [vid, setVid] = useState<MediaStream | undefined>(undefined);
 	const videoRef = useRef<HTMLVideoElement>(null);
 
+	const [isLoading, setIsLoading] = useState(true);
+
 	useEffect(() => {
-		navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-			setVid(stream);
-		});
+		navigator.mediaDevices
+			.getUserMedia({ video: true })
+			.then((stream) => {
+				setVid(stream);
+			})
+			.catch((err) => {
+				console.error("Camera access restricted", err);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
 	}, []);
 
 	useEffect(() => {
@@ -22,7 +32,12 @@ function App() {
 			<div className="container">
 				<h1>Digit Recognition</h1>
 				<div>
-					<video autoPlay playsInline ref={videoRef} className="skeleton" />
+					<video
+						autoPlay
+						playsInline
+						ref={videoRef}
+						className={`${isLoading ? "skeleton" : "loaded"}`}
+					/>
 					<img />
 				</div>
 				<button>Capture</button>

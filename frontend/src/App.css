@@ -7,11 +7,24 @@
 }
 
 .container .skeleton {
+	padding: 8px;
 	background-color: #e0e0e0;
 	border-radius: 8px;
 	min-height: 200px;
 	min-width: 350px;
 	animation: skeleton-loading 2.2s infinite linear;
+	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+}
+
+.container .loaded {
+	padding: 8px;
+	background-color: #1b1b1b;
+	border-radius: 8px;
+	min-height: 200px;
+	min-width: 350px;
+	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
 }
 
 @keyframes skeleton-loading {
