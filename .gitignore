@@ -1,6 +1,6 @@
 __pychache__/
 *.pyc
-*.h5
+# *.h5
 .env
 node_modules/
 .DS_Store
