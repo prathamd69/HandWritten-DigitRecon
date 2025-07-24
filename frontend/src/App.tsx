@@ -48,11 +48,29 @@ function App() {
 				const dataURL = canvas.toDataURL("image/png");
 				const preview = document.getElementById("preview") as HTMLImageElement;
 				preview.src = dataURL;
-				// You can now use dataURL, e.g. set it to an <img> src or save it
-				// Example: set a state to show the captured image
-				// setCapturedImage(dataURL);
 			}
 		}
+	};
+
+	const uploadImage = () => {
+		const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+
+		const imageData = canvas.toDataURL("image/png");
+
+		fetch("http://localhost:5000/predict", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ image: imageData }),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				alert(data);
+			})
+			.catch((err) => {
+				console.error("Prediction error:", err);
+			});
 	};
 
 	useEffect(() => {
@@ -86,6 +104,9 @@ function App() {
 					</button>
 					<button onClick={toggleVideoStream}>
 						{enableVid ? "Disable" : "Enable"} Stream
+					</button>
+					<button disabled={false} onClick={uploadImage}>
+						Predict
 					</button>
 				</div>
 				<p>Predicted Number : ~</p>
