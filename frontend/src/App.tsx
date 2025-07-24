@@ -8,6 +8,8 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [enableVid, setEnableVid] = useState(true);
 
+	const [result, setResult] = useState("~");
+
 	useEffect(() => {
 		requestVideoStream();
 	}, []);
@@ -66,7 +68,7 @@ function App() {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				alert(data);
+				setResult(data?.digit ?? "~");
 			})
 			.catch((err) => {
 				console.error("Prediction error:", err);
@@ -109,7 +111,7 @@ function App() {
 						Predict
 					</button>
 				</div>
-				<p>Predicted Number : ~</p>
+				<p>Predicted Number : {result}</p>
 			</div>
 		</>
 	);
