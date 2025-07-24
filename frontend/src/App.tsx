@@ -68,7 +68,7 @@ function App() {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				setResult(data.digit);
+				setResult(data?.digit ?? "~");
 			})
 			.catch((err) => {
 				console.error("Prediction error:", err);
