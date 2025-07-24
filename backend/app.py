@@ -5,12 +5,33 @@ from io import BytesIO
 from PIL import Image
 import numpy as np
 from tensorflow.keras.models import load_model
-
+import matplotlib.pyplot as plt
+import os
 
 app = Flask(__name__)
 CORS(app)  # allow frontend access from different port (e.g., 5500 → 5000)
 
-model = load_model("ann_model.h5")
+model_path = os.path.join(os.path.dirname(__file__), "ann_model.h5")
+print("Loading model from:", model_path)
+model = load_model(model_path)
+
+# img2 = os.path.join(os.path.dirname(__file__), "unnamed.jpeg")
+# img2 = Image.open(img2).convert('L')
+# img2 = img2.resize((28,28))
+# img2 = np.array(img2)/255.0
+# # print(img2)
+# img2 = img2.reshape(1,28,28)
+# print(img2.tolist())
+
+
+# # plt.imshow(img2, cmap='gray')
+# # plt.show()
+# prediction = model.predict(img2)
+# digit = int(np.argmax(prediction))
+# print(digit)
+# # return jsonify({'digit': digit})
+
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -25,7 +46,6 @@ def predict():
         image_array = np.array(image)/255.0
         image_array = image_array.reshape(1,28,28)
         
-        import matplotlib.pyplot as plt
         plt.imshow(image_array[0], cmap='gray')
         plt.show()
 
