@@ -11,7 +11,7 @@ import os
 app = Flask(__name__)
 CORS(app)  # allow frontend access from different port (e.g., 5500 → 5000)
 
-model_path = os.path.join(os.path.dirname(__file__), "ann_model.h5")
+model_path = os.path.join(os.path.dirname(__file__), "cnn_model.h5")
 print("Loading model from:", model_path)
 model = load_model(model_path)
 
@@ -46,8 +46,8 @@ def predict():
         image_array = np.array(image)/255.0
         image_array = image_array.reshape(1,28,28)
         
-        plt.imshow(image_array[0], cmap='gray')
-        plt.show()
+        # plt.imshow(image_array[0], cmap='gray')
+        # plt.show()
 
         prediction = model.predict(image_array)
         digit = int(np.argmax(prediction))
